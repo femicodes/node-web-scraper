@@ -1,16 +1,23 @@
 const request = require('request');
 const cheerio = require('cheerio');
 
-request('https://femicodes.github.io', (error, res, html) => {
+request('https://www.bellanaija.com/', (error, res, html) => {
     if (!error && res.statusCode == 200) {
         const $ = cheerio.load(html);
-        const site = $('.description');
+        const site = $('.home-feature');
         
-        // console.log(site.text());
+        //console.log(site.text());
         
         // const output = site.children().text();
 
-        const output = site.parent().text();
-        console.log(output);
+         /* const output = site.children().text();
+        console.log(output); */
+
+        $('#menu-header').each((i, el) => {
+            const item = $(el).text();
+            const link = $(el).attr('href');
+
+            console.log(item);
+        });
     }
 });
